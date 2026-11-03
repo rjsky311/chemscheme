@@ -12,7 +12,7 @@
 ## Features
 
 - **Multi-step scheme rendering** — SVG and PNG output with automatic layout (linear and convergent)
-- **3-layer validation** — Schema structure, chemical correctness (RDKit), reaction feasibility, and graph continuity
+- **Layered validation** — Schema structure, chemical correctness (RDKit), an optional reaction check, and graph continuity
 - **Compound name resolution** — Local alias database (100+ reagents), OPSIN, and PubChem fallback
 - **AI intent parsing** — Generate `scheme.json` from natural language descriptions via Claude API
 - **ChemDraw interop** — CDXML export/import with full round-trip fidelity (metadata, graph semantics)
@@ -253,7 +253,7 @@ chemscheme/
 
 1. **Schema** — JSON structure, required fields, type checks, DAG ordering
 2. **Chemistry** — RDKit SMILES parsing, valence checks, stereochemistry warnings
-3. **Reaction** — Atom conservation, feasibility (extensible via `ReactionPredictor` Protocol)
+3. **Reaction** — Optional product check through a pluggable `ReactionPredictor`; skipped with a warning when none is configured
 4. **Continuity** — Product-reactant chain connectivity across steps, branch grouping
 
 ### Design Decisions

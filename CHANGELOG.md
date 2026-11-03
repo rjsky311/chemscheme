@@ -8,7 +8,7 @@ First feature-complete version. Not published on PyPI.
 
 ### Added
 - `scheme.json` format with graph-aware convergent steps (`consumes_step_ids`).
-- Three-layer validation: schema, chemistry (RDKit), reaction feasibility, and
+- Layered validation: schema, chemistry (RDKit), an optional reaction check, and
   step-to-step continuity.
 - Multi-step SVG/PNG rendering with linear, convergent, and L-shaped layouts;
   yields, labels, multiline conditions, polymer brackets.

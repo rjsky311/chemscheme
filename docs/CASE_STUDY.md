@@ -18,8 +18,8 @@ been validated.
   convergent, or L-shaped layouts, with journal themes (ACS, Nature, RSC,
   Wiley).
 - Validates in layers: schema, chemistry (RDKit parsing, valence, stereo),
-  reaction feasibility (atom balance), and continuity (each product feeds the
-  next step).
+  continuity (each product feeds the next step), and an optional product
+  check when a reaction predictor is configured.
 - Resolves names to structures through a local reagent list, OPSIN, and
   PubChem, and records where each SMILES came from and how confident it is.
 - Exports and imports CDXML for ChemDraw round trips.
