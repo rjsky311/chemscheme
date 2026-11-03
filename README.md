@@ -316,10 +316,9 @@ Built in about five weeks (March 14 – April 19, 2026), then paused.
 ## How It Was Built
 
 ChemScheme was designed and directed by one synthetic chemist, Yu-Che Lin
-(PhD, organic electronic materials), and implemented with AI coding agents.
-The owner set the chemistry rules and acceptance criteria; agents wrote the
-code and tests; other models (Codex, Gemini) reviewed the plans and code
-at key phases. See
+(PhD, organic electronic materials). Yu-Che Lin set the chemistry rules and
+acceptance criteria; Claude Code (Anthropic) wrote the code and tests; OpenAI
+Codex and Google Gemini reviewed the plans and code at key phases. See
 [docs/CASE_STUDY.md](docs/CASE_STUDY.md).
 
 ## License

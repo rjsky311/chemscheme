@@ -31,10 +31,10 @@ been validated.
 
 ## How it was built
 
-One person owns the project: Yu-Che Lin, a synthetic chemist (PhD, organic
-electronic materials). Most of the code was written by Anthropic Claude
-(Claude Code); OpenAI Codex and Google Gemini reviewed plans and code at key
-phases.
+Yu-Che Lin, a synthetic chemist (PhD, organic electronic materials), owns the
+project, specified it, and accepted each phase. Claude Code (Anthropic)
+implemented the code and tests; OpenAI Codex and Google Gemini reviewed plans
+and code at key phases.
 
 | Owner | Agents |
 |---|---|
