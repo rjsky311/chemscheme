@@ -1,0 +1,262 @@
+{
+  "_description": "Named reaction pattern library. Provides typical conditions for common organic reactions.",
+  "_version": "1.0",
+  "reactions": [
+    {
+      "name": "Suzuki coupling",
+      "reagents": ["aryl halide", "boronic acid/ester"],
+      "catalyst": "Pd(PPh3)4 / Pd2(dba)3",
+      "solvents": ["THF", "H2O"],
+      "bases": ["K2CO3", "KF", "K3PO4", "CsF", "Na2CO3"],
+      "temperature": "80°C",
+      "time": "12-24h",
+      "description": "Pd-catalyzed cross-coupling of aryl halides with boronic acids/esters."
+    },
+    {
+      "name": "Stille coupling",
+      "reagents": ["aryl halide", "organostannane"],
+      "catalyst": "Pd(PPh3)4",
+      "solvents": ["toluene", "DMF"],
+      "bases": [],
+      "key_reagent": "Sn",
+      "temperature": "110°C",
+      "time": "12-24h",
+      "description": "Pd-catalyzed cross-coupling of aryl halides with organotin compounds."
+    },
+    {
+      "name": "Heck reaction",
+      "reagents": ["aryl halide", "alkene"],
+      "catalyst": "Pd(OAc)2",
+      "solvents": ["DMF"],
+      "bases": ["Et3N"],
+      "temperature": "120°C",
+      "time": "12-24h",
+      "description": "Pd-catalyzed coupling of aryl halides with alkenes (Mizoroki-Heck)."
+    },
+    {
+      "name": "Sonogashira coupling",
+      "reagents": ["aryl halide", "terminal alkyne"],
+      "catalyst": "Pd(PPh3)2Cl2",
+      "solvents": ["THF", "Et3N"],
+      "bases": ["Et3N"],
+      "temperature": "RT-60°C",
+      "time": "6-12h",
+      "atmosphere": "N2",
+      "description": "Pd/Cu-catalyzed coupling of aryl halides with terminal alkynes."
+    },
+    {
+      "name": "Buchwald-Hartwig amination",
+      "reagents": ["aryl halide", "amine"],
+      "catalyst": "Pd2(dba)3 / SPhos",
+      "solvents": ["toluene", "dioxane"],
+      "bases": ["NaOtBu"],
+      "temperature": "100°C",
+      "time": "12-24h",
+      "atmosphere": "N2",
+      "description": "Pd-catalyzed C-N bond formation between aryl halides and amines."
+    },
+    {
+      "name": "Knoevenagel condensation",
+      "reagents": ["aldehyde", "active methylene compound"],
+      "catalyst": "piperidine",
+      "solvents": ["EtOH", "CHCl3"],
+      "bases": [],
+      "temperature": "reflux",
+      "time": "4-12h",
+      "description": "Base-catalyzed condensation of aldehydes with active methylene compounds."
+    },
+    {
+      "name": "Vilsmeier-Haack formylation",
+      "reagents": ["electron-rich arene", "POCl3", "DMF"],
+      "catalyst": "",
+      "solvents": ["DCE", "DMF"],
+      "bases": [],
+      "key_reagent": "POCl3",
+      "temperature": "0°C → RT",
+      "time": "2-6h",
+      "description": "Electrophilic formylation using POCl3/DMF reagent system."
+    },
+    {
+      "name": "Wittig reaction",
+      "reagents": ["aldehyde/ketone", "phosphonium ylide"],
+      "catalyst": "",
+      "solvents": ["THF"],
+      "bases": ["BuLi", "NaH"],
+      "key_reagent": "ylide",
+      "temperature": "-78°C → RT",
+      "time": "2-12h",
+      "atmosphere": "N2",
+      "description": "Olefination of aldehydes/ketones via phosphonium ylides."
+    },
+    {
+      "name": "Grignard reaction",
+      "reagents": ["alkyl/aryl halide", "Mg"],
+      "catalyst": "",
+      "solvents": ["THF", "Et2O"],
+      "bases": [],
+      "key_reagent": "Mg",
+      "temperature": "0°C → reflux",
+      "time": "1-4h",
+      "atmosphere": "N2",
+      "description": "Formation and reaction of organomagnesium halide with electrophiles."
+    },
+    {
+      "name": "Aldol condensation",
+      "reagents": ["aldehyde/ketone", "enolizable carbonyl"],
+      "catalyst": "",
+      "solvents": ["THF", "H2O"],
+      "bases": ["NaOH", "LDA"],
+      "temperature": "-78°C → RT",
+      "time": "1-6h",
+      "description": "Base-catalyzed C-C bond formation between carbonyl compounds."
+    },
+    {
+      "name": "Negishi coupling",
+      "reagents": ["aryl halide", "organozinc"],
+      "catalyst": "Pd(PPh3)4",
+      "solvents": ["THF"],
+      "bases": [],
+      "key_reagent": "Zn",
+      "temperature": "RT-60°C",
+      "time": "6-12h",
+      "atmosphere": "N2",
+      "description": "Pd-catalyzed cross-coupling with organozinc reagents."
+    },
+    {
+      "name": "Kumada coupling",
+      "reagents": ["aryl halide", "Grignard reagent"],
+      "catalyst": "Pd(dppf)Cl2",
+      "solvents": ["THF"],
+      "bases": [],
+      "temperature": "RT-reflux",
+      "time": "2-12h",
+      "atmosphere": "N2",
+      "description": "Pd/Ni-catalyzed coupling with Grignard reagents."
+    },
+    {
+      "name": "Stille polymerization",
+      "reagents": ["distannyl monomer", "dibromo monomer"],
+      "catalyst": "Pd2(dba)3 / P(o-tol)3",
+      "solvents": ["toluene", "chlorobenzene"],
+      "bases": [],
+      "key_reagent": "Sn",
+      "temperature": "110-120°C",
+      "time": "24-72h",
+      "atmosphere": "N2",
+      "description": "Step-growth polymerization via Pd-catalyzed Stille coupling. Primary route for conjugated D-A copolymers (PM6, PTB7-Th, D18). Requires strict oxygen exclusion and degassed solvents."
+    },
+    {
+      "name": "Knoevenagel end-capping",
+      "reagents": ["dialdehyde core", "IC (malononitrile acceptor)"],
+      "catalyst": "pyridine",
+      "solvents": ["CHCl3", "DCM"],
+      "bases": [],
+      "temperature": "reflux",
+      "time": "6-12h",
+      "atmosphere": "N2",
+      "description": "Knoevenagel condensation for attaching electron-accepting IC end-groups to NFA cores (ITIC, Y6 synthesis). Pyridine or β-alanine catalyzed."
+    },
+    {
+      "name": "direct arylation polymerization",
+      "reagents": ["C-H substrate", "aryl halide"],
+      "catalyst": "Pd(OAc)2 / PCy3·HBF4",
+      "solvents": ["DMAc", "toluene"],
+      "bases": ["Cs2CO3", "K2CO3"],
+      "temperature": "100-140°C",
+      "time": "24-48h",
+      "atmosphere": "N2",
+      "description": "Atom-economical polymerization via C-H activation. Avoids organometallic monomers (no tin/boron waste). Emerging green route for conjugated polymers."
+    },
+    {
+      "name": "NBS bromination",
+      "reagents": ["aromatic substrate"],
+      "catalyst": "",
+      "solvents": ["THF", "DMF", "CHCl3"],
+      "bases": [],
+      "key_reagent": "NBS",
+      "temperature": "RT",
+      "time": "1-4h",
+      "description": "Electrophilic bromination using N-bromosuccinimide. Standard method for selective bromination of thiophenes, furans, and electron-rich aromatics."
+    },
+    {
+      "name": "Miyaura borylation",
+      "reagents": ["aryl halide", "B2pin2"],
+      "catalyst": "Pd(dppf)Cl2 / Pd(PPh3)2Cl2",
+      "solvents": ["dioxane", "DMSO"],
+      "bases": ["KOAc"],
+      "key_reagent": "B2pin2",
+      "temperature": "80-100°C",
+      "time": "12-24h",
+      "atmosphere": "N2",
+      "description": "Pd-catalyzed borylation of aryl halides with bis(pinacolato)diboron. Produces boronate esters for subsequent Suzuki coupling."
+    },
+    {
+      "name": "CuAAC click chemistry",
+      "reagents": ["azide", "terminal alkyne"],
+      "catalyst": "CuSO4",
+      "solvents": ["t-BuOH", "H2O", "EtOH"],
+      "bases": [],
+      "key_reagent": "ascorbate",
+      "temperature": "RT",
+      "time": "1-12h",
+      "description": "Copper(I)-catalyzed azide-alkyne cycloaddition (Sharpless click). CuSO4/sodium ascorbate generates Cu(I) in situ. Forms 1,4-disubstituted 1,2,3-triazoles."
+    },
+    {
+      "name": "diazotization",
+      "reagents": ["aromatic amine"],
+      "catalyst": "",
+      "solvents": ["CH3CN", "THF"],
+      "bases": [],
+      "key_reagent": "TMSN3",
+      "temperature": "0°C → RT",
+      "time": "1-4h",
+      "description": "Conversion of aromatic amines to aryl azides via diazotization with t-BuONO/TMSN3. Key step for CuAAC click chemistry substrates."
+    },
+    {
+      "name": "TBS protection",
+      "reagents": ["alcohol", "amine"],
+      "catalyst": "",
+      "solvents": ["CH2Cl2", "DMF"],
+      "bases": ["Et3N", "imidazole"],
+      "key_reagent": "TBS",
+      "temperature": "0°C → RT",
+      "time": "1-4h",
+      "description": "tert-Butyldimethylsilyl protection of alcohols/amines. TBSOTf (fast, low temp) or TBSCl/imidazole (mild). Removed by TBAF or HF."
+    },
+    {
+      "name": "BF3 Lewis acid activation",
+      "reagents": ["electrophile", "nucleophile"],
+      "catalyst": "",
+      "solvents": ["CH2Cl2", "Et2O"],
+      "bases": [],
+      "key_reagent": "BF3",
+      "temperature": "-78°C → RT",
+      "time": "1-6h",
+      "atmosphere": "N2",
+      "description": "BF3·Et2O-mediated Lewis acid activation. Used for allylations, epoxide openings, Mannich reactions, and other electrophilic additions."
+    },
+    {
+      "name": "enol triflate formation",
+      "reagents": ["ketone/lactam"],
+      "catalyst": "",
+      "solvents": ["THF"],
+      "bases": ["LiHMDS", "LDA", "KHMDS"],
+      "key_reagent": "Tf",
+      "temperature": "-78°C → RT",
+      "time": "1-4h",
+      "atmosphere": "N2",
+      "description": "Formation of vinyl triflates from ketones via enolization (LiHMDS/LDA) followed by trapping with PhN(Tf)2 or Tf2O. Converts C=O to C-OTf for cross-coupling."
+    },
+    {
+      "name": "benzylation",
+      "reagents": ["nucleophile (N, O, S)"],
+      "catalyst": "",
+      "solvents": ["DMF", "CH3CN", "THF"],
+      "bases": ["K2CO3", "NaH", "Et3N"],
+      "key_reagent": "BnBr",
+      "temperature": "RT-90°C",
+      "time": "2-12h",
+      "description": "N- or O-benzylation with benzyl bromide. Used for protecting groups, NHC precursor synthesis, and quaternization of heterocycles."
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1",
+  "title": "5-Step Linear NFA Synthesis",
+  "steps": [
+    {
+      "id": "1",
+      "reactants": ["c1ccc2[nH]ccc2c1"],
+      "products": ["O=Cc1cc2ccccc2[nH]1"],
+      "arrow_above": "POCl3, DMF",
+      "arrow_below": "DCE, 0 C to rt, 4h",
+      "yield": "85%"
+    },
+    {
+      "id": "2",
+      "reactants": ["O=Cc1cc2ccccc2[nH]1"],
+      "products": ["N#C/C=C\\c1cc2ccccc2[nH]1"],
+      "arrow_above": "CH2(CN)2, NH4OAc",
+      "arrow_below": "AcOH, reflux, 3h",
+      "yield": "90%"
+    },
+    {
+      "id": "3",
+      "reactants": ["N#C/C=C\\c1cc2ccccc2[nH]1"],
+      "products": ["c1ccc2c(c1)cc(/C=C\\C#N)[nH]2"],
+      "arrow_above": "NBS",
+      "arrow_below": "CHCl3, 0 C, 1h",
+      "yield": "75%"
+    },
+    {
+      "id": "4",
+      "reactants": ["c1ccc2c(c1)cc(/C=C\\C#N)[nH]2", "CCCCCCCCCCCC[Sn](CCCC)(CCCC)CCCC"],
+      "products": ["CCCCCCCCCCCCc1cc2ccccc2[nH]1"],
+      "arrow_above": "Pd2(dba)3, P(o-tol)3",
+      "arrow_below": "toluene, 110 C, 24h",
+      "yield": "68%"
+    },
+    {
+      "id": "5",
+      "reactants": ["CCCCCCCCCCCCc1cc2ccccc2[nH]1", "O=Cc1ccccc1"],
+      "products": ["CCCCCCCCCCCCc1cc2ccccc2n1/C=C/c1ccccc1"],
+      "arrow_above": "piperidine",
+      "arrow_below": "EtOH, reflux, 8h",
+      "yield": "55%"
+    }
+  ],
+  "style": "ACS2024",
+  "layout": "horizontal"
+}

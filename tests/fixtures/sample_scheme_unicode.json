@@ -1,0 +1,13 @@
+{
+  "schema_version": "1",
+  "title": "Unicode Reagent Test — 鈴木偶聯反應",
+  "steps": [
+    {
+      "id": "1",
+      "reactants": ["c1ccc(Br)cc1", "OB(O)c1ccccc1"],
+      "products": ["c1ccc(-c2ccccc2)cc1"],
+      "arrow_above": "Pd(PPh₃)₄, K₂CO₃",
+      "arrow_below": "DMF, 80°C, 12時間"
+    }
+  ]
+}

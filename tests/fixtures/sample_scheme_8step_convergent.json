@@ -1,0 +1,79 @@
+{
+  "schema_version": "1",
+  "title": "8-Step Convergent NFA Synthesis (Donor-Acceptor)",
+  "steps": [
+    {
+      "id": "1a",
+      "reactants": ["c1ccc2c(c1)c1ccccc1S2"],
+      "products": ["Brc1ccc2c(c1)c1ccccc1S2"],
+      "arrow_above": "NBS",
+      "arrow_below": "CHCl3, 0 C, 2h",
+      "branch_label": "donor unit",
+      "yield": "92%"
+    },
+    {
+      "id": "2a",
+      "reactants": ["Brc1ccc2c(c1)c1ccccc1S2"],
+      "products": ["Brc1ccc2c(c1)c1cc(Br)ccc1S2"],
+      "arrow_above": "NBS (2 eq)",
+      "arrow_below": "DMF, rt, 12h",
+      "branch_label": "donor unit",
+      "yield": "88%"
+    },
+    {
+      "id": "3a",
+      "reactants": ["Brc1ccc2c(c1)c1cc(Br)ccc1S2", "CCCCCCCC[Sn](CCCC)(CCCC)CCCC"],
+      "products": ["CCCCCCCCc1ccc2c(c1)c1cc(CCCCCCCC)ccc1S2"],
+      "arrow_above": "Pd(PPh3)4",
+      "arrow_below": "toluene, 110 C, 24h",
+      "branch_label": "donor unit",
+      "yield": "65%"
+    },
+    {
+      "id": "1b",
+      "reactants": ["O=c1cc[nH]c(=O)[nH]1"],
+      "products": ["Clc1ccnc(Cl)n1"],
+      "arrow_above": "POCl3",
+      "arrow_below": "reflux, 6h",
+      "branch_label": "acceptor unit",
+      "yield": "80%"
+    },
+    {
+      "id": "2b",
+      "reactants": ["Clc1ccnc(Cl)n1", "c1ccc(-c2ccccc2)cc1"],
+      "products": ["c1ccc(-c2ccnc(-c3ccccc3)n2)cc1"],
+      "arrow_above": "Pd2(dba)3, SPhos",
+      "arrow_below": "dioxane, 100 C, 12h",
+      "branch_label": "acceptor unit",
+      "yield": "72%"
+    },
+    {
+      "id": "3b",
+      "reactants": ["c1ccc(-c2ccnc(-c3ccccc3)n2)cc1"],
+      "products": ["Brc1cnc(-c2ccccc2)nc1-c1ccccc1"],
+      "arrow_above": "NBS",
+      "arrow_below": "CHCl3, 0 C, 1h",
+      "branch_label": "acceptor unit",
+      "yield": "85%"
+    },
+    {
+      "id": "4",
+      "consumes_step_ids": ["3a", "3b"],
+      "reactants": ["CCCCCCCCc1ccc2c(c1)c1cc(CCCCCCCC)ccc1S2", "Brc1cnc(-c2ccccc2)nc1-c1ccccc1"],
+      "products": ["CCCCCCCCc1ccc2c(c1)c1cc(CCCCCCCC)ccc1S2-c1cnc(-c2ccccc2)nc1-c1ccccc1"],
+      "arrow_above": "Pd2(dba)3, P(o-tol)3",
+      "arrow_below": "toluene, 110 C, 48h",
+      "yield": "45%"
+    },
+    {
+      "id": "5",
+      "reactants": ["CCCCCCCCc1ccc2c(c1)c1cc(CCCCCCCC)ccc1S2-c1cnc(-c2ccccc2)nc1-c1ccccc1"],
+      "products": ["CCCCCCCCc1ccc2c(c1)c1cc(CCCCCCCC)ccc1S2-c1cnc(-c2ccccc2)nc1-c1ccc(/C=C/C#N)cc1"],
+      "arrow_above": "2-cyanoacetic acid, piperidine",
+      "arrow_below": "CHCl3, reflux, 12h",
+      "yield": "60%"
+    }
+  ],
+  "style": "ACS2024",
+  "layout": "horizontal"
+}

@@ -1,0 +1,114 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: pip install ruff mypy
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: pip install -e ".[dev,mcp,web]"
+      - run: mypy chemscheme/
+
+  test:
+    needs: lint
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python: "3.13"
+          - os: windows-latest
+            python: "3.13"
+          - os: ubuntu-latest
+            python: "3.14"
+            experimental: true
+    runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.experimental || false }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          allow-prereleases: true
+      - run: pip install -e ".[dev,mcp,web,indigo]" || pip install -e ".[dev,mcp,web]"
+      - run: pytest -v --tb=short -m "not visual"
+
+  smoke:
+    needs: test
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      # Build wheel
+      - run: pip install build
+      - run: python -m build
+
+      # Install in fresh venv and test outside repo
+      - name: Smoke test (Unix)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          python -m venv /tmp/smoke-venv
+          source /tmp/smoke-venv/bin/activate
+          pip install dist/*.whl
+          cd /tmp
+          chemscheme --help
+          chemscheme --version
+          chemscheme themes
+          chemscheme resolve Bpin
+
+      - name: Smoke test (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          python -m venv $env:TEMP\smoke-venv
+          & "$env:TEMP\smoke-venv\Scripts\Activate.ps1"
+          pip install (Get-Item dist\*.whl).FullName
+          Set-Location $env:TEMP
+          chemscheme --help
+          chemscheme --version
+          chemscheme themes
+          chemscheme resolve Bpin
+
+      # Windows path with spaces (AC-15.5 / Codex C7)
+      - name: Windows path-with-spaces test
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          & "$env:TEMP\smoke-venv\Scripts\Activate.ps1"
+          New-Item -ItemType Directory -Force -Path "$env:TEMP\My Projects\test dir"
+          Set-Location "$env:TEMP\My Projects\test dir"
+          chemscheme --help
+          chemscheme --version
+
+      # MCP smoke (AC-15.5 / Codex C8)
+      - name: MCP import smoke test
+        shell: bash
+        run: |
+          WHEEL=$(ls dist/*.whl)
+          pip install "${WHEEL}[mcp]" || echo "::warning::MCP extra install failed, testing base package"
+          python -c "from chemscheme.mcp_server import chemscheme_mcp; print('MCP OK:', len(chemscheme_mcp._tool_manager.list_tools()), 'tools')"

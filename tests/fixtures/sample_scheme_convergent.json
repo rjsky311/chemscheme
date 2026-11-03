@@ -1,0 +1,33 @@
+{
+  "schema_version": "1",
+  "title": "Test Convergent Synthesis (Stille Coupling)",
+  "steps": [
+    {
+      "id": "1a",
+      "reactants": ["c1ccc(Br)cc1"],
+      "products": ["c1ccc(Br)c(Br)c1"],
+      "arrow_above": "NBS",
+      "arrow_below": "CHCl3, 0 C, 2h",
+      "branch_label": "donor unit"
+    },
+    {
+      "id": "1b",
+      "reactants": ["c1ccncc1"],
+      "products": ["c1cc([Sn](C)(C)C)ncc1"],
+      "arrow_above": "n-BuLi, SnMe3Cl",
+      "arrow_below": "THF, -78 C",
+      "branch_label": "acceptor unit"
+    },
+    {
+      "id": "2",
+      "consumes_step_ids": ["1a", "1b"],
+      "reactants": ["c1ccc(Br)c(Br)c1", "c1cc([Sn](C)(C)C)ncc1"],
+      "products": ["c1ccc(-c2ccncc2)c(-c2ccncc2)c1"],
+      "arrow_above": "Pd(PPh3)4",
+      "arrow_below": "toluene, 110 C, 24h",
+      "yield": "72%"
+    }
+  ],
+  "style": "ACS2024",
+  "layout": "horizontal"
+}

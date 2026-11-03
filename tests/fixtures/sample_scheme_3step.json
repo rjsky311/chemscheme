@@ -1,0 +1,32 @@
+{
+  "schema_version": "1",
+  "title": "3-Step Linear Synthesis (Suzuki → Reduction → Alkylation)",
+  "steps": [
+    {
+      "id": "1",
+      "reactants": ["c1ccc(Br)cc1", "OB(O)c1ccccc1"],
+      "products": ["c1ccc(-c2ccccc2)cc1"],
+      "arrow_above": "Pd(PPh3)4, K2CO3",
+      "arrow_below": "DMF, 80 C, 12h",
+      "yield": "78%"
+    },
+    {
+      "id": "2",
+      "reactants": ["c1ccc(-c2ccccc2)cc1", "[H][H]"],
+      "products": ["C1CCC(C2CCCCC2)CC1"],
+      "arrow_above": "H2, Pd/C",
+      "arrow_below": "EtOH, rt, 6h",
+      "yield": "95%"
+    },
+    {
+      "id": "3",
+      "reactants": ["C1CCC(C2CCCCC2)CC1", "CI"],
+      "products": ["CC1CCC(C2CCCCC2)CC1"],
+      "arrow_above": "n-BuLi, MeI",
+      "arrow_below": "THF, -78 C, 2h",
+      "yield": "62%"
+    }
+  ],
+  "style": "ACS2024",
+  "layout": "horizontal"
+}

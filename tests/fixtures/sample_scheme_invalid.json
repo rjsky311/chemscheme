@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "title": "Invalid Scheme - Missing Products",
+  "steps": [
+    {
+      "id": "1",
+      "reactants": ["c1ccc(Br)cc1"],
+      "arrow_above": "Pd(PPh3)4"
+    }
+  ]
+}

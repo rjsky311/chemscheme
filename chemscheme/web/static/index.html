@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ChemScheme — Authoring (Ketcher)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; padding: 0; background: #fafafa; }
+    header { padding: 12px 20px; background: #1e293b; color: white; }
+    header h1 { margin: 0; font-size: 18px; font-weight: 500; }
+    main { padding: 20px; }
+    .panel { background: white; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 16px; padding: 16px; }
+    .panel h2 { margin-top: 0; font-size: 14px; color: #334155; text-transform: uppercase; letter-spacing: 0.05em; }
+    iframe.ketcher-frame { width: 100%; height: 600px; border: 1px solid #cbd5e1; border-radius: 4px; background: white; }
+    .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    button, input[type=text], input[type=file] { padding: 8px 12px; font-size: 14px; border: 1px solid #cbd5e1; border-radius: 4px; background: white; }
+    button { cursor: pointer; background: #0ea5e9; color: white; border: none; }
+    button:hover { background: #0284c7; }
+    .status { color: #64748b; font-size: 13px; margin-left: 8px; }
+    .warn { color: #b45309; }
+    .err { color: #dc2626; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ChemScheme — Authoring (Ketcher)</h1>
+  </header>
+  <main>
+    <div class="panel">
+      <h2>1. Draw / Paste / Recognize</h2>
+      <div class="row">
+        <label>Paste SMILES:
+          <input type="text" id="smiles-input" placeholder="c1ccccc1" size="40">
+        </label>
+        <button id="paste-btn">Load to canvas</button>
+        <label>Or upload screenshot:
+          <input type="file" id="image-input" accept="image/*">
+        </label>
+        <button id="recognize-btn">Recognize → canvas</button>
+        <span class="status" id="status"></span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>2. Ketcher canvas</h2>
+      <!-- Ketcher 3.0 standalone build (Apache 2.0). Loaded from EPAM CDN.
+           Self-host alternative: ship `ketcher-standalone` build under static/ketcher/. -->
+      <iframe
+        id="ketcher-frame"
+        class="ketcher-frame"
+        src="https://lifescience.opensource.epam.com/KetcherDemoSPA/index.html"
+        title="Ketcher chemical structure editor"
+      ></iframe>
+    </div>
+
+    <div class="panel">
+      <h2>3. Save / Load scheme.json</h2>
+      <div class="row">
+        <label>Path:
+          <input type="text" id="scheme-path" placeholder="./my_scheme.json" size="50">
+        </label>
+        <button id="save-btn">Save</button>
+        <button id="load-btn">Load</button>
+        <span class="status" id="save-status"></span>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Minimal placeholder bridge — full UI wiring is S69 scope.
+    // For S68 we ship the structural skeleton + endpoints; the JS bridge is
+    // demonstrated only by the paste / recognize / save buttons hitting the
+    // server endpoints. End-to-end Ketcher round-trip via postMessage to the
+    // iframe is iteration 2.
+    const statusEl = document.getElementById('status');
+    const saveStatusEl = document.getElementById('save-status');
+
+    document.getElementById('paste-btn').addEventListener('click', async () => {
+      const smiles = document.getElementById('smiles-input').value.trim();
+      if (!smiles) { statusEl.textContent = 'enter SMILES first'; statusEl.className = 'status warn'; return; }
+      const r = await fetch('/api/smiles_to_mol', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({smiles})});
+      if (!r.ok) { const err = await r.json(); statusEl.textContent = `error: ${err.detail || 'unknown'}`; statusEl.className = 'status err'; return; }
+      const body = await r.json();
+      statusEl.textContent = `parsed → canonical = ${body.canonical_smiles}`;
+      statusEl.className = 'status';
+      // TODO S69: postMessage mol_block into ketcher iframe
+    });
+
+    document.getElementById('recognize-btn').addEventListener('click', async () => {
+      const fileInput = document.getElementById('image-input');
+      if (!fileInput.files.length) { statusEl.textContent = 'pick an image first'; statusEl.className = 'status warn'; return; }
+      const fd = new FormData();
+      fd.append('image', fileInput.files[0]);
+      statusEl.textContent = 'recognizing...';
+      const r = await fetch('/api/recognize', {method: 'POST', body: fd});
+      if (!r.ok) { const err = await r.json(); statusEl.textContent = `error: ${err.detail || 'unknown'}`; statusEl.className = 'status err'; return; }
+      const body = await r.json();
+      const warn = body.needs_review ? ' (LOW CONFIDENCE — verify manually)' : '';
+      statusEl.textContent = `OCSR → ${body.smiles || '(empty)'} [${body.source}, conf=${body.confidence.toFixed(2)}]${warn}`;
+      statusEl.className = body.needs_review ? 'status warn' : 'status';
+      // TODO S69: postMessage body.mol_block into ketcher iframe
+    });
+
+    document.getElementById('save-btn').addEventListener('click', () => {
+      saveStatusEl.textContent = 'save UI wiring is S69 scope; endpoint /api/scheme/save is live and tested';
+      saveStatusEl.className = 'status warn';
+    });
+
+    document.getElementById('load-btn').addEventListener('click', () => {
+      saveStatusEl.textContent = 'load UI wiring is S69 scope; endpoint /api/scheme/load is live and tested';
+      saveStatusEl.className = 'status warn';
+    });
+  </script>
+</body>
+</html>
